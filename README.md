@@ -1,10 +1,10 @@
 # Dotfiles
 
-This repo contains my dotfiles, including:
+This repository has my dotfiles, including:
 - kitty
 - zsh
 - tmux
 - gdb
-- vim
-- neovim
+- Vim
+- Neovim
 - starship
