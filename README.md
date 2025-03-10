@@ -1,5 +1,3 @@
-Below is an example of a well-organized README.md framework for your dotfiles repository. You can adjust each section to include details specific to your setup, preferences, or any installation instructions.
-
 # My Dotfiles
 
 This repository contains my configuration files ("dotfiles") for various tools and applications. It is designed to help streamline my workflow and ensure a consistent environment across different systems.
