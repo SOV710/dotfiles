@@ -156,6 +156,3 @@ For any questions, suggestions, or issues, please open an issue on GitHub or con
 ---
 
 Happy configuring!
-```
-
-This framework outlines all key sections for a comprehensive README, making it easier for others (or future you) to understand, install, and customize your dotfiles. Enjoy your setup!
