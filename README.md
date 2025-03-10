@@ -3,8 +3,9 @@
 This repository has my dotfiles, including:
 - kitty
 - zsh
-- tmux
 - gdb
+- vale
+- btop
 - Vim
 - Neovim
 - starship
