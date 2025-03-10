@@ -41,10 +41,6 @@ vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', opts)
 vim.keymap.set('n', '<leader>d', ':Bdelete!<CR>', opts) -- close buffer
 vim.keymap.set('n', '<leader>n', '<cmd> enew <CR>', opts) -- new buffer
 
--- Typst
-vim.keymap.set('n', 't', ':TypstPreview', opts)
-vim.keymap.set('n', '<C-t>', ':TypstPreviewStop', opts)
-
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -64,3 +60,6 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Remove comflicts with Kitty's keymap
+vim.keymap.set('n', '<S-A-.>', '', opts)

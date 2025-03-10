@@ -183,6 +183,7 @@ return {
             yapf = { enabled = false },
             -- linter options
             pyflakes = { enabled = false },
+            pylint = { enabled = false },
             pycodestyle = { enabled = false },
             -- type checker
             pylsp_mypy = { enabled = false },
@@ -247,6 +248,10 @@ return {
             'svelte',
             'astro',
           },
+        },
+
+        cssls = {
+          cmd = { 'vscode-css-language-server', '--stdio' },
         },
 
         jsonls = {},
