@@ -96,7 +96,7 @@ Below is an overview of the repository's structure:
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/yourusername/dotfiles.git ~/.dotfiles
+   git clone https://github.com/SOV710/dotfiles.git ~/.dotfiles
    cd ~/.dotfiles
    ```
 
@@ -125,7 +125,7 @@ Below is an overview of the repository's structure:
 - **kitty:** Adjust settings in `kitty.conf` or change layouts with `layout.conf` and keybindings via `keymap.conf`.
 - **nvim:** The core configuration is in `init.lua` and extended with Lua modules in the `lua` directory.
 - **starship:** Update `starship.toml` to modify your shell prompt.
-- **vale:** Utilize the style guide configurations under `vale` to maintain consistency in documentation.
+- **vale:** Use the style guide configurations under `vale` to maintain consistency in documentation.
 - **zsh:** Customize your shell experience by modifying `aliases.zsh`, `custom.zsh`, and enabling git completions.
 
 ## Customization
@@ -151,7 +151,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
-For any questions, suggestions, or issues, please open an issue on GitHub or contact me at [your.email@example.com](mailto:your.email@example.com).
+For any questions, suggestions, or issues, please open an issue on GitHub or contact me at [chris916911179@outlook.com](mailto:chris916911179@outlook.com).
 
 ---
 
