@@ -6,6 +6,10 @@ alias e='exit'
 alias ll='ls -l'
 alias la='ls -la'
 
+# Git
+alias ga='git add'
+alias gc='git commit -m'
+
 # Gadget
 alias bw='bitwise'
 
