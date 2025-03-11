@@ -6,7 +6,11 @@ import platform
 import re
 
 
-def get_os_distro():
+def get_os_info():
+    os_name = platform.system()
+    if os_name != "Linux":
+        return os_name
+
     distro = ""
     try:
         with open("/etc/os-release", "r") as f:
@@ -46,7 +50,6 @@ def change_default_shell():
 
 
 def copy_file(src, dest):
-    """复制单个文件，并保留权限"""
     try:
         os.makedirs(os.path.dirname(dest), exist_ok=True)
         shutil.copy2(src, dest)
@@ -56,7 +59,6 @@ def copy_file(src, dest):
 
 
 def copy_directory(src, dest):
-    """复制整个目录。如果目标目录已存在，则进行合并更新文件。"""
     try:
         if not os.path.exists(dest):
             shutil.copytree(src, dest)
@@ -77,11 +79,6 @@ def copy_directory(src, dest):
 
 
 def install_configs():
-    """
-    根据配置文件目录结构，将配置文件复制到：
-    - 用户根目录：.bashrc, .profile, .vim, .vimrc, .zshenv, .zshrc 等
-    - ~/.config 目录：btop, gdb, kitty, nvim, starship, vale, zsh 等
-    """
     # 当前脚本所在目录，即配置仓库目录
     repo_dir = os.path.abspath(os.path.dirname(__file__))
     home_dir = os.path.expanduser("~")
@@ -124,10 +121,12 @@ def install_configs():
 
 
 def main():
-    os_name = platform.system()
-    os_distro = get_os_distro()
-    change_default_shell()
-    install_configs()
+    os_info = get_os_info()
+    if os_info == "Windows":
+        print("Error: Windows sucks")
+        return
+    change_default_shell(os_info)
+    install_configs(os_info)
 
 
 if __name__ == "__main__":
