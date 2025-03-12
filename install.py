@@ -1,4 +1,9 @@
 # /usr/bin/env python3
+
+# Linux Distros ready to Support:
+# Slackware
+#
+
 import os
 import shutil
 import subprocess
@@ -20,6 +25,12 @@ def get_os_info():
     except Exception as e:
         print("Cannot read /etc/os-release :", e)
     return distro
+
+
+def install_zsh(os_info):
+    if os_info == "ubuntu":
+        subprocess.run(["sudo", "apt-get", "update"], check=True)
+        subprocess.run(["sudo", "apt-get", "install", "-y", "zsh"], check=True)
 
 
 def change_default_shell():
