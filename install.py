@@ -2,7 +2,18 @@
 
 # Linux Distros ready to Support:
 # Slackware
-#
+# Debian
+# Ubuntu
+# deepin
+# Kali
+# Linux Mint
+# CentOS
+# Fedora
+# openSUSE
+# Gentoo
+# Arch Linux
+# Manjaro
+# NixOS
 
 import os
 import shutil
@@ -13,9 +24,10 @@ import re
 
 def get_os_info():
     os_name = platform.system()
-    if os_name != "Linux":
-        return os_name
+    return os_name
 
+
+def get_linux_distro():
     distro = ""
     try:
         with open("/etc/os-release", "r") as f:
@@ -27,10 +39,42 @@ def get_os_info():
     return distro
 
 
-def install_zsh(os_info):
-    if os_info == "ubuntu":
+def get_linux_version():
+    version = ""
+    try:
+        with open("/etc/os-release", "r") as f:
+            for line in f:
+                if re.match(r"^VERSION_ID=", line):
+                    version = line.strip().split("=", 1)[1].strip().strip('"')
+    except Exception as e:
+        print("Cannot read /etc/os-release :", e)
+    return version
+
+
+def install_zsh(info, version):
+    debians = ["debian", "ubuntu", "deepin", "kali", "linuxmint"]
+    if info in debians:
         subprocess.run(["sudo", "apt-get", "update"], check=True)
         subprocess.run(["sudo", "apt-get", "install", "-y", "zsh"], check=True)
+    elif info == "centos":
+        if int(version) <= 7:
+            subprocess.run(["sudo", "yum", "install", "-y", "zsh"])
+        else:
+            subprocess.run(["sudo", "dnf", "install", "-y", "zsh"])
+    elif info == "fedora":
+        subprocess.run(["sudo", "dnf", "install", "-y", "zsh"])
+    elif info == "opensuse" | info == "opensuse-leap":
+        subprocess.run(["sudo", "zypper", "install", "-y", "zsh"])
+    elif info == "gentoo":
+        pass
+    elif info == "arch" | info == "manjaro":
+        pass
+    elif info == "nixos":
+        pass
+    elif info == "Darwin":
+        pass
+    else:
+        raise Exception("Error: Not support your os")
 
 
 def change_default_shell():
@@ -50,7 +94,6 @@ def change_default_shell():
 
         username = pwd.getpwuid(os.getuid())[0]
 
-    # 使用 chsh 命令更改默认 shell
     try:
         # 注意：修改默认 shell 可能需要密码验证
         subprocess.run(["chsh", "-s", zsh_path, username], check=True)
@@ -58,6 +101,10 @@ def change_default_shell():
     except subprocess.CalledProcessError as e:
         print("更改默认 shell 失败，请手动更改。")
         print(e)
+
+
+def change_default_shell_mac():
+    pass
 
 
 def copy_file(src, dest):
@@ -131,13 +178,29 @@ def install_configs():
     print("配置文件安装完成！")
 
 
+def install_configs_mac():
+    pass
+
+
 def main():
+    # Get the os info
     os_info = get_os_info()
+    distro = ""
+    version = ""
+    if os_info == "Linux":
+        distro = get_linux_distro()
+        version = get_linux_version()
+
+    # Run the install script
     if os_info == "Windows":
-        print("Error: Windows sucks")
+        print("Error: This dotfiles installation don't support Windows right now")
         return
-    change_default_shell(os_info)
-    install_configs(os_info)
+    elif os_info == "Darwin":
+        change_default_shell_mac()
+        install_configs_mac()
+    elif os_info == "Linux":
+        change_default_shell(distro, version)
+        install_configs(distro, version)
 
 
 if __name__ == "__main__":
