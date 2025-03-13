@@ -196,9 +196,11 @@ def main():
         print("Error: This dotfiles installation don't support Windows right now")
         return
     elif os_info == "Darwin":
+        install_zsh(os_info)
         change_default_shell_mac()
         install_configs_mac()
     elif os_info == "Linux":
+        install_zsh(distro, version)
         change_default_shell(distro, version)
         install_configs(distro, version)
 
