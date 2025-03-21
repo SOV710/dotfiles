@@ -1,6 +1,6 @@
 # My Dotfiles
 
-This repository contains my configuration files ("dotfiles") for various tools and applications. It is designed to help streamline my workflow and ensure a consistent environment across different systems.
+This repository contains my configuration files ("dotfiles") for various tools and applications.
 
 ## Table of Contents
 
