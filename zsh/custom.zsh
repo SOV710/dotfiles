@@ -7,6 +7,9 @@ export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 export PATH="/home/chris/.local/bin:$PATH"
 export PATH="/opt:$PATH"
 
+# uv
+export PATH="$HOME/.local/share/../bin:$PATH"
+
 # Zoxide
 eval "$(zoxide init zsh)"
 

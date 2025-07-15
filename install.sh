@@ -16,3 +16,6 @@ cargo install zoxide --locked
 
 # install starship
 cargo install starship --locked
+
+# install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
