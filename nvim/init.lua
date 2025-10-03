@@ -1,8 +1,7 @@
+require 'core.autocmds'
 require 'core.options'
 require 'core.keymaps'
 
--- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -17,30 +16,34 @@ require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   -- NOTE: Appearance
   require 'plugins.dashboard',
+  require 'plugins.lualine',
+  require 'plugins.indent-line',
+  require 'plugins.todo-comments',
+  require 'plugins.themes.tokyonight',
+
+  -- NOTE: Editing Flow
   require 'plugins.neo-tree',
   require 'plugins.telescope',
-  require 'plugins.which_key',
+  require 'plugins.which-key',
   require 'plugins.bufferline',
-  require 'plugins.todo_comments',
-  require 'plugins.themes.tokyonight',
-  -- NOTE: Editor
+  require 'plugins.toggleterm',
+
+  -- NOTE: Development Tools
   require 'plugins.treesitter',
-  require 'plugins.lsp',
-  require 'plugins.autocompletion',
-  require 'plugins.trouble',
   require 'plugins.lint',
-  require 'plugins.autoformat',
-  require 'plugins.indent_line',
-  require 'plugins.autopairs',
+  require 'plugins.lsp',
+  require 'plugins.cmp',
+  require 'plugins.diagnostic',
+  require 'plugins.dap',
+  require 'plugins.conform',
+
   -- NOTE: AI Tools
   require 'plugins.avante',
+
   -- NOTE: Version Control
   require 'plugins.gitsigns',
-  -- NOTE: Debug
-  require 'plugins.debug',
-  require 'plugins.vimtex',
-  require 'plugins.typst_preview',
-  -- NOTE: Other
+
+  -- NOTE: Utils
   require 'plugins.mini',
 }, {
   ui = {

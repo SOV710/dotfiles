@@ -7,6 +7,12 @@ local opts = { noremap = true, silent = true }
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- NOTE: Remap 'Ctrl + [' to 'esc'
+vim.keymap.set({ 'n', 'v', 'i', 'c' }, '<C-[', '<Esc>', { silent = true })
+
+-- NOTE: Remap 'Ctrl + A' to 'select all'
+vim.keymap.set('n', '<C-a>', 'ggVG', { silent = true })
+
 -- Disable the spacebar key's default behavior in Normal and Visual modes
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
@@ -36,20 +42,41 @@ vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 
 -- Buffers
-vim.keymap.set('n', '<Tab>', ':bnext<CR>', opts)
-vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', opts)
-vim.keymap.set('n', '<leader>d', ':Bdelete!<CR>', opts) -- close buffer
-vim.keymap.set('n', '<leader>n', '<cmd> enew <CR>', opts) -- new buffer
+vim.keymap.set('n', '<leader>q', ':Bdelete!<CR>', { desc = 'Close buffer', silent = true, noremap = true }) -- close buffer
+vim.keymap.set('n', '<leader>n', '<cmd> enew <CR>', { desc = 'New buffer', silent = true }) -- new buffer
+-- NOTE: Require bufferline.nvim
+vim.keymap.set('n', "'", '<Cmd>BufferLineCycleNext<CR>', { desc = 'Go to next buffer' })
+vim.keymap.set('n', ';', '<Cmd>BufferLineCyclePrev<CR>', { desc = 'Go to previous buffer' })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>n', function()
+  local float_buf, float_win = vim.diagnostic.open_float(nil, {
+    scope = 'line',
+    focus = false, -- 先别自动聚焦
+    focusable = true, -- 允许聚焦
+    close_events = {}, -- 清空默认事件，不要自动关
+  })
+
+  if float_win and vim.api.nvim_win_is_valid(float_win) then
+    -- 切到浮窗窗口
+    vim.cmd(('noautocmd call nvim_set_current_win(%d)'):format(float_win))
+
+    -- 在浮窗 buffer 上绑 <Esc> 和 q 关闭浮窗
+    vim.keymap.set({ 'n' }, '<Esc>', function()
+      vim.api.nvim_win_close(float_win, true)
+    end, { buffer = float_buf, nowait = true, silent = true })
+
+    vim.keymap.set({ 'n' }, 'q', function()
+      vim.api.nvim_win_close(float_win, true)
+    end, { buffer = float_buf, nowait = true, silent = true })
+  end
+end, { desc = 'Open diagnostic float and focus', silent = true })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
 --
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Keybinds to make split navigation easier.

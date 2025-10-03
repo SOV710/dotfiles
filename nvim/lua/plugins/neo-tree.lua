@@ -8,6 +8,7 @@ return {
     'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
     'MunifTanjim/nui.nvim',
+    'echasnovski/mini.nvim',
     {
       's1n7ax/nvim-window-picker',
       version = '2.*',
@@ -30,7 +31,7 @@ return {
   },
   cmd = 'Neotree',
   keys = {
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '<leader>e', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
   config = function()
     vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
@@ -164,7 +165,7 @@ return {
             nowait = true,
           },
           mappings = {
-            ['\\'] = 'close_window',
+            ['<leader>e'] = 'close_window',
             ['<bs>'] = 'navigate_up',
             ['.'] = 'set_root',
             ['H'] = 'toggle_hidden',

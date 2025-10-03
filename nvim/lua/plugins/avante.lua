@@ -1,30 +1,62 @@
 return {
   'yetone/avante.nvim',
   event = 'VeryLazy',
-  lazy = false,
-  version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+  build = 'make',
+  version = false, -- WARNING: Never set this to '*'!!!
+
+  ---@module 'avante'
+  ---@type avante.Config
   opts = {
-    -- add any opts here
-    -- for example
-    provider = 'openai',
-    openai = {
-      endpoint = 'https://xiaoai.plus/v1',
-      model = 'gpt-4o', -- your desired model (or use gpt-4o, etc.)
-      timeout = 30000, -- timeout in milliseconds
-      temperature = 0, -- adjust if needed
-      max_tokens = 4096,
-      -- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
+    provider = 'claude',
+    providers = {
+      claude = {
+        endpoint = 'https://openrouter.ai/api/v1/chat/completions',
+        model = 'claude-sonnet-4',
+        timeout = 30000,
+        extra_request_body = {
+          temperature = 0.75,
+          max_tokens = 20480,
+        },
+      },
+      moonshot = {
+        endpoint = 'https://api.moonshot.cn/v1',
+        model = 'moonshot-v1-128k',
+        timeout = 30000,
+        extra_request_body = {
+          temperature = 0.75,
+          max_tokens = 32768,
+        },
+      },
+    },
+    mappings = {
+      --- @class AvanteConflictMappings
+      suggestion = {
+        accept = '<C-y>',
+        next = '<M-]>',
+        prev = '<M-[>',
+        dismiss = '<C-n>',
+      },
+    },
+
+    selector = {
+      provider = 'telescope',
+    },
+    compat = {
+      'avante_commands',
+      'avante_mentions',
+      'avante_files',
+    },
+    windows = {
+      position = 'right',
+      wrap = true,
+      input = {
+        height = 12,
+      },
     },
   },
-  -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-  build = 'make',
-  -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
   dependencies = {
-    'nvim-treesitter/nvim-treesitter',
-    'stevearc/dressing.nvim',
     'nvim-lua/plenary.nvim',
     'MunifTanjim/nui.nvim',
-    --- The below dependencies are optional,
     'echasnovski/mini.pick', -- for file_selector provider mini.pick
     'nvim-telescope/telescope.nvim', -- for file_selector provider telescope
     'hrsh7th/nvim-cmp', -- autocompletion for avante commands and mentions

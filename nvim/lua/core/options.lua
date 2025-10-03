@@ -1,13 +1,5 @@
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
+-- enable editorconfig
+vim.g.editorconfig = true
 
 -- Make line numbers default
 vim.opt.number = true
@@ -66,3 +58,13 @@ vim.opt.scrolloff = 10
 
 -- Fit with avante.nvim
 vim.opt.laststatus = 3
+
+-- diagnostic
+vim.diagnostic.config {
+  float = {
+    focusable = true,
+    close_events = { 'BufHidden', 'BufLeave' },
+    border = 'rounded',
+    source = 'if_many',
+  },
+}
