@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
-let g:netrw_dirhist_5='/home/chris/Work/test'
-let g:netrw_dirhist_4='/home/chris/.config/fontconfig'
-let g:netrw_dirhist_3='/home/chris/.config/io.github.clash-verge-rev.clash-verge-rev'
-let g:netrw_dirhist_2='/home/chris/MyWorld/Work/temp/lib/src'
-let g:netrw_dirhist_1='/home/chris/MyWorld/Work/temp/lib/include'
