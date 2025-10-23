@@ -32,16 +32,20 @@ if [ -d "$XDG_CONFIG_HOME/nvm/" ]; then
 fi
 
 # zsh-syntax-highlighting (brew)
-[ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] &&
-    source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# Disable underline
-(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[path]=none
-ZSH_HIGHLIGHT_STYLES[path_prefix]=none
+if command -v brew &>/dev/null; then
+    [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] &&
+        source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    # Disable underline
+    (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
+    ZSH_HIGHLIGHT_STYLES[path]=none
+    ZSH_HIGHLIGHT_STYLES[path_prefix]=none
+fi
 
 # zsh-autosuggestions (brew)
-[ -f "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] &&
-    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if command -v brew &>/dev/null; then
+    [ -f "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] &&
+        source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
 # Conda
 if command -v conda &>/dev/null; then
@@ -61,7 +65,8 @@ fi
 
 # Starship
 if command -v starship &>/dev/null; then
-    export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+    [ -f "$HOME/.config/starship/starship.toml" ] &&
+        export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
     starship config palette $STARSHIP_THEME
     # Check that the function `starship_zle-keymap-select()` is defined.
     # xref: https://github.com/starship/starship/issues/3418

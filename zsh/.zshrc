@@ -17,6 +17,3 @@ HISTFILE=~/.zsh_history
 [ -f "$HOME/.config/zsh/functions.zsh" ] && source "$HOME/.config/zsh/functions.zsh"
 [ -f "$HOME/.config/zsh/keymap.zsh" ] && source "$HOME/.config/zsh/keymap.zsh"
 [ -f "$HOME/.config/zsh/tools.zsh" ] && source "$HOME/.config/zsh/tools.zsh"
-
-[ -f "$HOME/.config/zsh/custom.zsh" ] && source "$HOME/.config/zsh/custom.zsh"
-[ -f "$HOME/.config/zsh/work.zsh" ] && source "$HOME/.config/zsh/work.zsh"
