@@ -29,6 +29,13 @@ export STARSHIP_THEME="onedark"
 # PATH Related
 # ==============================================================================
 
+if [ -d "$HOME/.cargo" ]; then
+    case ":$PATH:" in
+    *":$HOME/.cargo:"*) ;;
+    *) export PATH="$HOME/.cargo:$PATH" ;;
+    esac
+fi
+
 if [ -d "/usr/local/bin" ]; then
     case ":$PATH:" in
     *":/usr/local/bin:"*) ;;
