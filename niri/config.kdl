@@ -1,0 +1,90 @@
+input {
+    keyboard {
+        xkb {
+            layout "us"
+        }
+        repeat-delay 300
+        repeat-rate 40
+    }
+    mouse {
+        accel-profile "adaptive"
+        accel-speed 0.5
+    }
+    touchpad {
+        accel-profile "adaptive"
+        accel-speed 0.7
+        scroll-factor 2.0
+        tap
+        dwt
+        dwtp
+        drag true
+        drag-lock
+        click-method "clickfinger"
+    }
+    workspace-auto-back-and-forth
+    mod-key "Alt"
+    mod-key-nested "Super"
+}
+
+output "Virtual-1" {
+    mode "2560x1325@59.949"
+    scale 1.0
+    transform "normal"
+    backdrop-color "#001100"
+    // hot-croners {
+    //    top-right
+    // }
+}
+
+binds {
+    Mod+H { focus-column-left; }
+    Mod+J { focus-window-or-workspace-down; }
+    Mod+K { focus-window-or-workspace-up; }
+    Mod+L { focus-column-right; }
+
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+J { move-column-to-workspace-down; }
+    Mod+Shift+K { move-column-to-workspace-up; }
+    Mod+Shift+L { move-column-right; }
+
+    Mod+Ctrl+K { move-window-up; }
+    Mod+Ctrl+J { move-window-down; }
+    Mod+Ctrl+H { consume-or-expel-window-left; }
+    Mod+Ctrl+L { consume-or-expel-window-right; }
+
+    Mod+Home repeat=false { focus-column-first; }
+    Mod+End repeat=false { focus-column-last; }
+
+    Mod+G repeat=false { toggle-column-tabbed-display; }
+
+    Mod+R { switch-preset-column-width; }
+
+    Mod+F repeat=false { maximize-column; }
+    Mod+Shift+F repeat=false { toggle-window-floating; }
+    Mod+Ctrl+F repeat=false { fullscreen-window; }
+
+    Mod+Tab repeat=false { switch-focus-between-floating-and-tiling; }
+
+    Mod+Q repeat=false { close-window; }
+
+    // Mod+BracketRight { focus-monitor-right; }
+    // Mod+BracketLeft { focus-monitor-left; }
+
+    // Mod+Shift+BracketRight { move-column-to-monitor-right; }
+    // Mod+Shift+BracketLeft { move-column-to-monitor-left; }
+
+    Mod+Return repeat=false { spawn "ghostty"; }
+
+    Mod+Shift+E { quit; }
+}
+
+layout {
+    gaps 16
+    always-center-single-column
+    empty-workspace-above-first
+    background-color "transparent"
+
+    insert-hint {
+        gradient from="#3355ff33" to="#00999933" angle=45
+    }
+}
