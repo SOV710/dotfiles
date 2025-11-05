@@ -1,0 +1,22 @@
+# Font
+font-family = Smile Nerd Font Mono
+font-synthetic-style = true
+font-size = 12.0
+
+# Color & Opacity
+alpha-blending = native
+theme = tokyonight
+background = #12121C
+background-opacity = 0.95
+
+# Split setting
+unfocused-split-opacity = 1.0
+split-divider-color = #5F87AF
+
+# Cursor
+cursor-color = #FFB86C
+cursor-style = block
+shell-integration-features = no-cursor
+
+# Mouse
+mouse-hide-while-typing = true

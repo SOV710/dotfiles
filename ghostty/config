@@ -1,0 +1,4 @@
+config-file = session
+config-file = theme
+config-file = keymap
+keybind = shift+enter=text:\n
