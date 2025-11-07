@@ -6,6 +6,7 @@ $git_status\
 $fill\
 $c\
 $python\
+$conda\
 $lua\
 $nodejs\
 $golang\
@@ -27,7 +28,7 @@ style = 'bold fg:dark_blue'
 format = '[$path ]($style)'
 truncation_length = 3
 truncation_symbol = '…/'
-truncate_to_repo = false
+truncate_to_repo = true
 
 [directory.substitutions]
 'Documents' = '󰈙'
@@ -58,6 +59,10 @@ symbol = ' '
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 pyenv_version_name = true
 pyenv_prefix = ''
+
+[conda]
+ignore_base = true
+format = '[$symbol$environment](dimmed green) '
 
 [lua]
 format = '[$symbol($version )]($style)'
