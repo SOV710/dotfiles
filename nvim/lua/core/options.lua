@@ -59,6 +59,16 @@ vim.opt.scrolloff = 10
 -- Fit with avante.nvim
 vim.opt.laststatus = 3
 
+-- CJK encoding
+vim.opt.fileencodings = {
+  "ucs-bom",
+  "utf-8",
+  "gb18030",
+  "gbk",
+  "gb2312",
+  "latin1",
+}
+
 -- diagnostic
 vim.diagnostic.config {
   float = {

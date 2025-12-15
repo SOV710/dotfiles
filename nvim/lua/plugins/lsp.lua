@@ -34,6 +34,7 @@ return {
           'vue_ls',
           'sqls',
           'vimls',
+          'qmlls',
           'neocmake',
           'dockerls',
           'docker_compose_language_service',
@@ -46,27 +47,27 @@ return {
 
       local lsp_keymaps = {
         -- Jump to the definition of the word under your cursor.
-        { 'ld', vim.lsp.buf.definition, 'definition' },
+        { 'ld', vim.lsp.buf.definition,                                     'definition' },
         -- Jump to the declaration of the word under your cursor.
         --  For example, in C this would take you to the header.
-        { 'lD', vim.lsp.buf.declaration, 'declaration' },
+        { 'lD', vim.lsp.buf.declaration,                                    'declaration' },
         -- Jump to the type of the word under your cursor.
-        { 'lt', vim.lsp.buf.type_definition, 'typeDefinition' },
+        { 'lt', vim.lsp.buf.type_definition,                                'typeDefinition' },
         -- Find references for the word under your cursor.
-        { 'lr', vim.lsp.buf.references, 'references' },
+        { 'lr', vim.lsp.buf.references,                                     'references' },
         -- Jump to the implementation of the word under your cursor.
-        { 'li', vim.lsp.buf.implementation, 'implementation' },
+        { 'li', vim.lsp.buf.implementation,                                 'implementation' },
         -- Fuzzy find all the symbols in your current document.
         --  Symbols are things like variables, functions, types, etc.
-        { 'ls', require('telescope.builtin').lsp_document_symbols, nil },
+        { 'ls', require('telescope.builtin').lsp_document_symbols,          nil },
         -- Fuzzy find all the symbols in your current workspace.
         --  Similar to document symbols, except searches over your entire project.
         { 'lS', require('telescope.builtin').lsp_dynamic_workspace_symbols, nil },
         -- Rename the variable under your cursor
-        { 'ln', vim.lsp.buf.rename, 'rename' },
+        { 'ln', vim.lsp.buf.rename,                                         'rename' },
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
-        { 'lc', vim.lsp.buf.code_action, 'codeAction' },
+        { 'lc', vim.lsp.buf.code_action,                                    'codeAction' },
       }
 
       local function has(bufnr, method)
