@@ -1,2 +1,6 @@
 *.log
 test.*
+
+# doom emacs git repo
+emacs/.git
+emacs/.github
