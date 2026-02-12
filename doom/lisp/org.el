@@ -21,10 +21,15 @@ For ：；？！, a trailing space is added unless the character is at EOL."
         (goto-char (point-min))
         (while (search-forward "\u201d" nil t)
           (replace-match "\"" t t))
+        ;; （ → " ("
+        (goto-char (point-min))
+        (while (search-forward "（" nil t)
+          (replace-match " (" t t))
         ;; ：；？！ → conditional on EOL
         (dolist (spec '(("：" ": " ":")
                         ("；" "; " ";")
                         ("？" "? " "?")
+                        ("）" ") " ")")
                         ("！" "! " "!")))
           (goto-char (point-min))
           (while (search-forward (car spec) nil t)
